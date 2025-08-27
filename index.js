@@ -40,10 +40,10 @@ for (let i = 0; i < buttons.length; i++) {
 
     // Append Div
     const div = document.createElement("div");
-    const time = new Date().toLocaleTimeString()
+    const time = new Date().toLocaleTimeString();
     const divElement = document.getElementById("div-container");
     div.innerHTML = `
-                      <div class="w-full p-3 bg-[#fafafa] rounded-2xl flex justify-between items-center">
+                      <div class="w-full p-3 bg-[#fafafa] rounded-2xl flex justify-between items-center mb-[12px]">
                 <div>
                   <h1 class="hind-madurai-semibold">${service[i].name}</h1>
                   <p class="text-[12px] text-[#5c5c5c]">${service[i].number}</p>
@@ -57,6 +57,21 @@ for (let i = 0; i < buttons.length; i++) {
   });
 }
 
-document.getElementById('clear-btn').addEventListener('click' , function(){
-    document.getElementById('div-container').innerHTML = ''
-})
+document.getElementById("clear-btn").addEventListener("click", function () {
+  document.getElementById("div-container").innerHTML = "";
+});
+
+const copyBtns = document.querySelectorAll(".copy-btn");
+
+for (const btn of copyBtns) {
+  btn.addEventListener("click", function () {
+    let totalCopy = parseInt(document.getElementById("totalCopy").innerText);
+    totalCopy++;
+    document.getElementById("totalCopy").innerText = totalCopy;
+
+    const parentDiv = btn.closest("div").parentElement;
+    const copyText = parentDiv.querySelector(".number").innerText;
+
+    navigator.clipboard.writeText(copyText);
+  });
+}
