@@ -72,6 +72,7 @@ for (const btn of copyBtns) {
     const parentDiv = btn.closest("div").parentElement;
     const copyText = parentDiv.querySelector(".number").innerText;
 
+    alert(`Copied  ${copyText}`)
     navigator.clipboard.writeText(copyText);
   });
 }
